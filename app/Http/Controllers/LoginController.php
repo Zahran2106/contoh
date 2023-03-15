@@ -52,6 +52,6 @@ class LoginController extends Controller
         Auth::guard('masyarakat')->logout();
         Auth::guard('petugas')->logout();
 
-        return redirect()->route('/')->with('success', 'Logout berhasil.');
+        return redirect()->route('index')->with('success', 'Logout berhasil.');
     }
 }

@@ -11,4 +11,9 @@ class Pengaduan extends Model
 
     protected $table = 'pengaduans';
     protected $fillable = ['tgl_pengaduan', 'nik', 'isi_laporan', 'foto', 'status'];
+
+    public function getDataMasyarakat()
+    {
+        return $this->belongsTo(Masyarakat::class, 'nik', 'nik');
+    }
 }
