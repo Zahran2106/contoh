@@ -9,7 +9,7 @@
             
                 <div class="card-body">
                     <div class="row">
-                        <form action="{{ route('tanggapan.store', $pengaduan->id) }}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('tanggapan.update', $tanggapan->id) }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group">
                                 <label for="basicInput">Tanggal</label>
