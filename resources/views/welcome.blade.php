@@ -78,22 +78,68 @@
             </div>
         </div>
         <div class="d-flex justify-content-center">
-            <div class="col-md-8">
+            <div class="col-md-4 mx-2">
                 <div class="card mb-5">
                     <div class="card-header">
-                        Pengaduan
+                        Pengaduan Belum Ditanggapi
                     </div>
                     <div class="card-body">
-                        @forelse ($pengaduans as $pengaduan)
+                        @forelse ($pengaduanPending as $pengaduan)
                             <div class="card mt-2">
-                                <div class="card-body row">
-                                    <div class="col-md-3">
-                                        <img class="w-100" src="{{ asset($pengaduan->foto) }}" alt="">
-                                    </div>
-                                    <div class="col-md-9">
-                                        <h5 class="card-title">{{ $pengaduan->getDataMasyarakat->nama }} <span class="badge bg-success">{{ $pengaduan->status }}</span></h5>
-                                        <p class="card-text">{{ Str::limit($pengaduan->isi_laporan, 150, '...') }}</p>
-                                    </div>
+                                <div class="card-body">
+                                    <img class="w-100" src="{{ asset($pengaduan->foto) }}" alt="">
+                                    <h5 class="card-title">{{ $pengaduan->getDataMasyarakat->nama }} <span class="badge bg-secondary">Pending</span></h5>
+                                    <p class="m-0"><strong>Tanggal Pengaduan :</strong> {{ $pengaduan->tgl_pengaduan }}</p>
+                                    <p class="card-text">{{ Str::limit($pengaduan->isi_laporan, 150, '...') }}</p>
+                                </div>
+                            </div>
+                        @empty
+                            <div class="d-flex justify-content-center">
+                                <p>Tidak ada data</p>
+                            </div>
+                        @endforelse
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mx-2">
+                <div class="card mb-5">
+                    <div class="card-header">
+                        Pengaduan Diproses
+                    </div>
+                    <div class="card-body">
+                        @forelse ($pengaduanProses as $pengaduan)
+                            <div class="card mt-2">
+                                <div class="card-body">
+                                    <img class="w-100" src="{{ asset($pengaduan->foto) }}" alt="">
+                                    <h5 class="card-title">{{ $pengaduan->getDataMasyarakat->nama }} <span class="badge bg-warning">{{ $pengaduan->status }}</span></h5>
+                                    <p class="m-0"><strong>Tanggal Pengaduan :</strong> {{ $pengaduan->tgl_pengaduan }}</p>
+                                    <p class="m-0"><strong>Tanggal Proses :</strong> {{ $pengaduan->getDataTanggapan->tgl_tanggapan }}</p>
+                                    <p class="card-text">{{ Str::limit($pengaduan->isi_laporan, 150, '...') }}</p>
+                                </div>
+                            </div>
+                        @empty
+                            <div class="d-flex justify-content-center">
+                                <p>Tidak ada data</p>
+                            </div>
+                        @endforelse
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mx-2">
+                <div class="card mb-5">
+                    <div class="card-header">
+                        Pengaduan Selesai
+                    </div>
+                    <div class="card-body">
+                        @forelse ($pengaduanSelesai as $pengaduan)
+                            <div class="card mt-2">
+                                <div class="card-body">
+                                    <img class="w-100" src="{{ asset($pengaduan->foto) }}" alt="">
+                                    <h5 class="card-title">{{ $pengaduan->getDataMasyarakat->nama }} <span class="badge bg-success">{{ $pengaduan->status }}</span></h5>
+                                    <p class="m-0"><strong>Tanggal Pengaduan :</strong> {{ $pengaduan->tgl_pengaduan }}</p>
+                                    <p class="m-0"><strong>Tanggal Proses :</strong> {{ $pengaduan->getDataTanggapan->tgl_tanggapan }}</p>
+                                    <p class="m-0"><strong>Tanggal Selesai :</strong> {{ $pengaduan->tgl_selesai }}</p>
+                                    <p class="card-text">{{ Str::limit($pengaduan->isi_laporan, 150, '...') }}</p>
                                 </div>
                             </div>
                         @empty

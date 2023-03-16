@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Masyarakat;
+use App\Models\Logging;
 use App\Models\Petugas;
 use App\Models\Pengaduan;
 use App\Models\Tanggapan;
+use App\Models\Masyarakat;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -49,6 +50,12 @@ class PetugasController extends Controller
 
         Petugas::create($validateData);
 
+        $createLog = new Logging;
+        $createLog->nama = Auth::guard('petugas')->user()->nama;
+        $createLog->level = Auth::guard('petugas')->user()->level;
+        $createLog->aksi = 'Membuat petugas';
+        $createLog->save();
+
         return redirect()->route('petugas.index')->with('success', 'Berhasil menambahkan petugas.');
     }
 
@@ -76,6 +83,12 @@ class PetugasController extends Controller
         $petugas = Petugas::findOrFail($id);
         $petugas->update($validateData);
 
+        $createLog = new Logging;
+        $createLog->nama = Auth::guard('petugas')->user()->nama;
+        $createLog->level = Auth::guard('petugas')->user()->level;
+        $createLog->aksi = 'Mengubah petugas';
+        $createLog->save();
+
         return redirect()->route('petugas.index')->with('success', 'Berhasil mengubah petugas.');
     }
 
@@ -91,6 +104,20 @@ class PetugasController extends Controller
             $tanggapan->delete();
         }
         $petugas->delete();
+
+        $createLog = new Logging;
+        $createLog->nama = Auth::guard('petugas')->user()->nama;
+        $createLog->level = Auth::guard('petugas')->user()->level;
+        $createLog->aksi = 'Menghapus petugas';
+        $createLog->save();
+
         return redirect()->route('petugas.index')->with('success', 'Berhasil menghapus petugas.');
+    }
+
+    public function logging()
+    {
+        $logs = Logging::paginate(100);
+        
+        return view('petugas.log', compact('logs'));
     }
 }

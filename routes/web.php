@@ -73,6 +73,8 @@ Route::middleware('isLogin')->group(function () {
         Route::get('/petugas/petugas/delete/{id}', [PetugasController::class, 'delete'])->name('petugas.delete');
         
         Route::get('/petugas/generate_pdf', [TanggapanController::class, 'generatePDF'])->name('generate.pdf');
+
+        Route::get('/petugas/log', [PetugasController::class, 'logging'])->name('petugas.log');
     });
     
 });

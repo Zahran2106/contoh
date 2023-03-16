@@ -22,7 +22,7 @@
                     <thead>
                         <tr>
                             <th>No</th>
-                            <th>Tanggal Pengaduan</th>
+                            <th style="width: 200px">Tanggal</th>
                             <th>Nama</th>
                             <th>Isi Laporan</th>
                             <th>Foto</th>
@@ -34,7 +34,11 @@
                         @foreach ($pengaduans as $pengaduan)
                             <tr>
                                 <td>{{ $pengaduans->firstItem() + $loop->index }}</td>
-                                <td>{{ $pengaduan->tgl_pengaduan }}</td>
+                                <td>
+                                    <p class="m-0">Pengaduan : {{ $pengaduan->tgl_pengaduan }}</p>
+                                    <p class="m-0">Proses : {{ $pengaduan->getDataTanggapan != null ? $pengaduan->getDataTanggapan->tgl_tanggapan : '-' }}</p>
+                                    <p class="m-0">Selesai : {{ $pengaduan->status == 'Selesai' ? $pengaduan->tgl_selesai : '-' }}</p>
+                                </td>
                                 <td>{{ $pengaduan->getDataMasyarakat->nama }}</td>
                                 <td>{{ $pengaduan->isi_laporan }}</td>
                                 <td>

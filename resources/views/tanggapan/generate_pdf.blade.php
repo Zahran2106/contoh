@@ -7,6 +7,7 @@
     <title>Aplikasi Pelaporan Pengaduan Masyarakat</title>
 </head>
 <body>
+    
     <span><strong>Nama Petugas : </strong> {{ Auth::guard('petugas')->user()->nama }}</span>
     <br>
     <span><strong>Tanggal : </strong> {{ now()->format('D, d M Y ') }}</span>

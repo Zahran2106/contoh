@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Logging;
 use App\Models\Pengaduan;
 use App\Models\Tanggapan;
 use Illuminate\Http\Request;
@@ -18,15 +19,18 @@ class PengaduanController extends Controller
 
     public function indexPetugas()
     {
-        $pengaduans = Pengaduan::latest()->with('getDataMasyarakat')->paginate(5);
+        $pengaduans = Pengaduan::latest()->with('getDataMasyarakat', 'getDataTanggapan')->paginate(5);
         return view('pengaduan.indexPetugas', compact('pengaduans'));
     }
 
     public function pengaduanLanding()
     {
-        $pengaduans = Pengaduan::where('status', 'Selesai')->with('getDataMasyarakat')->limit(5)->get();
+        $pengaduanPending = Pengaduan::where('status', '0')->with('getDataMasyarakat')->get();
+        $pengaduanProses = Pengaduan::where('status', 'Proses')->with('getDataMasyarakat', 'getDataTanggapan')->get();
+        $pengaduanSelesai = Pengaduan::where('status', 'Selesai')->with('getDataMasyarakat')->get();
         $totalAduan = Pengaduan::count();
-        return view('welcome', compact('pengaduans', 'totalAduan'));
+
+        return view('welcome', compact('pengaduanPending', 'pengaduanProses', 'pengaduanSelesai', 'totalAduan'));
     }
 
     public function create()
@@ -60,6 +64,12 @@ class PengaduanController extends Controller
             Pengaduan::create($validateData);
         }
 
+        $createLog = new Logging;
+        $createLog->nama = Auth::guard('masyarakat')->user()->nama;
+        $createLog->level = 'Masyarakat';
+        $createLog->aksi = 'Membuat aduan';
+        $createLog->save();
+
         return redirect()->route('pengaduan.index')->with('success', 'Berhasil menambahkan pengaduan.');
     }
 
@@ -91,6 +101,13 @@ class PengaduanController extends Controller
             $data->foto = $request->foto_lama;
             $data->update();
         }
+
+        $createLog = new Logging;
+        $createLog->nama = Auth::guard('masyarakat')->user()->nama;
+        $createLog->level = 'Masyarakat';
+        $createLog->aksi = 'Mengubah aduan';
+        $createLog->save();
+
         return redirect()->route('pengaduan.index')->with('success', 'Berhasil mengubah pengaduan.');
     }
 
@@ -102,8 +119,22 @@ class PengaduanController extends Controller
             $pengaduan->delete();
             $tanggapan->delete();
             if (Auth::guard('masyarakat')->user()) {
+
+                $createLog = new Logging;
+                $createLog->nama = Auth::guard('masyarakat')->user()->nama;
+                $createLog->level = 'Masyarakat';
+                $createLog->aksi = 'Menghapus aduan';
+                $createLog->save();
+
                 return redirect()->route('pengaduan.index')->with('success', 'Berhasil menghapus pengaduan.');
             }
+
+            $createLog = new Logging;
+            $createLog->nama = Auth::guard('petugas')->user()->nama;
+            $createLog->level = Auth::guard('petugas')->user()->level;;
+            $createLog->aksi = 'Menghapus aduan';
+            $createLog->save();
+
             return redirect()->route('pengaduan.indexPetugas')->with('success', 'Berhasil menghapus pengaduan.');
         }
         return redirect()->route('pengaduan.index')->with('error', 'Gagal menghapus pengaduan.');

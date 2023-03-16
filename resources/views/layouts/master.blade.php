@@ -86,6 +86,12 @@
                         <span>Data Petugas</span>
                     </a>
                 </li>
+                <li class="sidebar-item @if (request()->is('petugas/log')) active @endif">
+                    <a href="{{ route('petugas.log') }}" class='sidebar-link'>
+                        <img src="{{ asset('assets/bootstrap-icons/person-gear.svg') }}" alt="">
+                        <span>Data Log</span>
+                    </a>
+                </li>
             @endif
             
             <li class="sidebar-item">

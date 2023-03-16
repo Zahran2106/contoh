@@ -11,14 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('pengaduans', function (Blueprint $table) {
+        Schema::create('loggings', function (Blueprint $table) {
             $table->id();
-            $table->date('tgl_pengaduan');
-            $table->date('tgl_selesai')->nullable();
-            $table->string('nik', 16);
-            $table->text('isi_laporan');
-            $table->string('foto');
-            $table->enum('status', ['0', 'Proses', 'Selesai']);
+            $table->string('nama');
+            $table->string('level');
+            $table->string('aksi');
             $table->timestamps();
         });
     }
@@ -28,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('pengaduans');
+        Schema::dropIfExists('loggings');
     }
 };

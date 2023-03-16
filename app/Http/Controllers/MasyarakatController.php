@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Logging;
 use App\Models\Pengaduan;
 use App\Models\Tanggapan;
 use App\Models\Masyarakat;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 class MasyarakatController extends Controller
 {
@@ -29,6 +31,13 @@ class MasyarakatController extends Controller
 
         $masyarakat = Masyarakat::findOrFail($id);
         $pengaduans = Pengaduan::where('nik', $masyarakat->nik)->get();
+
+        $createLog = new Logging;
+        $createLog->nama = Auth::guard('petugas')->user()->nama;
+        $createLog->level = Auth::guard('petugas')->user()->level;
+        $createLog->aksi = 'Menghapus masyarakat';
+        $createLog->save();
+
         foreach ($pengaduans as $pengaduan) {
             $tanggapans = Tanggapan::where('id_pengaduan', $pengaduan->id)->get();
             foreach ($tanggapans as $tanggapan) {

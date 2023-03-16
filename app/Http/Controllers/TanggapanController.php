@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
+use App\Models\Logging;
 use App\Models\Pengaduan;
 use App\Models\Tanggapan;
 use Illuminate\Http\Request;
@@ -37,15 +39,27 @@ class TanggapanController extends Controller
         ]);
 
         $updateStatus = Pengaduan::findOrFail($id_pengaduan);
+        if ($request->status == 'Selesai') {
+            $updateStatus->tgl_selesai = Carbon::now();
+        }
         $updateStatus->status = $request->status;
         $updateStatus->update();
 
         $data = new Tanggapan;
         $data->id_pengaduan = $id_pengaduan;
+        if ($request->status == 'Selesai') {
+            $data->tgl_tanggapan = Carbon::now();
+        }
         $data->tgl_tanggapan = $request->tgl_tanggapan;
         $data->tanggapan = $request->tanggapan;
         $data->id_petugas = $request->id_petugas;
         $data->save();
+
+        $createLog = new Logging;
+        $createLog->nama = Auth::guard('petugas')->user()->nama;
+        $createLog->level = Auth::guard('petugas')->user()->level;
+        $createLog->aksi = 'Membuat tanggapan';
+        $createLog->save();
 
         return redirect()->route('tanggapan.index')->with('success', 'Berhasil menambahkan tanggapan.');
     }
@@ -67,6 +81,11 @@ class TanggapanController extends Controller
         ]);
 
         $updateStatus = Pengaduan::findOrFail($request->id_pengaduan);
+        if ($updateStatus->status == 'Proses' && $request->status == 'Selesai') {
+            $updateStatus->tgl_selesai = Carbon::now();
+        } elseif ($updateStatus->status == 'Selesai' && $request->status == 'Proses') {
+            $updateStatus->tgl_selesai = null;
+        }
         $updateStatus->status = $request->status;
         $updateStatus->update();
 
@@ -75,6 +94,12 @@ class TanggapanController extends Controller
         $data->tanggapan = $request->tanggapan;
         $data->id_petugas = $request->id_petugas;
         $data->update();
+
+        $createLog = new Logging;
+        $createLog->nama = Auth::guard('petugas')->user()->nama;
+        $createLog->level = Auth::guard('petugas')->user()->level;
+        $createLog->aksi = 'Mengubah tanggapan';
+        $createLog->save();
 
         return redirect()->route('tanggapan.index')->with('success', 'Berhasil mengubah tanggapan.');
     }
@@ -89,9 +114,16 @@ class TanggapanController extends Controller
             $tanggapan->delete();
             $tanggapanIdentik->delete();
             $pengaduan->delete();
+
+            $createLog = new Logging;
+            $createLog->nama = Auth::guard('petugas')->user()->nama;
+            $createLog->level = Auth::guard('petugas')->user()->level;
+            $createLog->aksi = 'Menghapus tanggapan';
+            $createLog->save();
+
             return redirect()->route('tanggapan.index')->with('success', 'Berhasil menghapus tanggapan.');
         }
-        return back()->with('success', 'Berhasil menghapus tanggapan.');
+        return back()->with('error', 'Gagal menghapus tanggapan.');
     }
 
     public function generatePDF()
