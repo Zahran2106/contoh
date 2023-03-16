@@ -18,7 +18,7 @@ class PengaduanController extends Controller
 
     public function indexPetugas()
     {
-        $pengaduans = Pengaduan::latest()->paginate(5);
+        $pengaduans = Pengaduan::latest()->with('getDataMasyarakat')->paginate(5);
         return view('pengaduan.indexPetugas', compact('pengaduans'));
     }
 

@@ -18,7 +18,7 @@
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
                 @endif
-                <table class="table table-striped table-dark mb-0">
+                <table class="table table-striped table-dark mb-2">
                     <thead>
                         <tr>
                             <th>No</th>
@@ -27,7 +27,7 @@
                             <th>Isi Laporan</th>
                             <th>Foto</th>
                             <th>Status</th>
-                            <th style="width: 100px">Action</th>
+                            <th style="width: 150px">Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -35,9 +35,15 @@
                             <tr>
                                 <td>{{ $pengaduans->firstItem() + $loop->index }}</td>
                                 <td>{{ $pengaduan->tgl_pengaduan }}</td>
-                                <td>{{ $pengaduan->nik }}</td>
+                                <td>{{ $pengaduan->getDataMasyarakat->nama }}</td>
                                 <td>{{ $pengaduan->isi_laporan }}</td>
-                                <td><img src="{{ asset($pengaduan->foto) }}" alt="" width="50px"></td>
+                                <td>
+                                    @if ($pengaduan->foto != "-")
+                                        <img src="{{ asset($pengaduan->foto) }}" alt="foto aduan" width="100px">
+                                    @else
+                                        {{ $pengaduan->foto }}
+                                    @endif
+                                </td>
                                 <td>
                                     {!! 
                                         $pengaduan->status == "0" ? '<span class="badge text-bg-secondary">Pending</span>' :
@@ -50,7 +56,7 @@
                                             <img src="{{ asset('assets/bootstrap-icons/pencil-square.svg') }}" width="20px" alt="">
                                         </button>
                                     </a>
-                                    <a class="text-decoration-none" href="/petugas/masyarakat/delete/{{ $pengaduan->id }}" onclick="return confirm('Are you sure to delete?')">
+                                    <a class="text-decoration-none" href="/petugas/pengaduan/delete/{{ $pengaduan->id }}" onclick="return confirm('Are you sure to delete?')">
                                         <button type="button" class="btn btn-danger btn-sm">
                                             <img src="{{ asset('assets/bootstrap-icons/trash.svg') }}" width="20px" alt="">
                                         </button>
@@ -60,6 +66,7 @@
                         @endforeach
                     </tbody>
                 </table>
+                {{ $pengaduans->links() }}
             </div>
         </div>
     </div>

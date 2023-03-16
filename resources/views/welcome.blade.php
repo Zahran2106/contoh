@@ -91,7 +91,7 @@
                                         <img class="w-100" src="{{ asset($pengaduan->foto) }}" alt="">
                                     </div>
                                     <div class="col-md-9">
-                                        <h5 class="card-title">{{ $pengaduan->masyarakat->nama }} <span class="badge bg-success">{{ $pengaduan->status }}</span></h5>
+                                        <h5 class="card-title">{{ $pengaduan->getDataMasyarakat->nama }} <span class="badge bg-success">{{ $pengaduan->status }}</span></h5>
                                         <p class="card-text">{{ Str::limit($pengaduan->isi_laporan, 150, '...') }}</p>
                                     </div>
                                 </div>

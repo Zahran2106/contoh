@@ -22,7 +22,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
             @endif
-            <table class="table table-striped table-dark mb-0">
+            <table class="table table-striped table-dark mb-2">
                 <thead>
                     <tr>
                         <th>No</th>
@@ -57,6 +57,7 @@
                     @endforeach
                 </tbody>
             </table>
+            {{ $petugass->links() }}
         </div>
     </div>
 </div>

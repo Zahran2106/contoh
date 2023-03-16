@@ -20,8 +20,8 @@ class TanggapanController extends Controller
     public function create($id_pengaduan)
     {
         $pengaduan = Pengaduan::findOrFail($id_pengaduan);
-        if ($pengaduan->status == 'Selesai') {
-            return back()->with('error', 'Status pengaduan sudah selesai.');
+        if ($pengaduan->status == 'Selesai' || $pengaduan->status == 'Proses') {
+            return back()->with('error', 'Tanggapan sudah tersedia.');
         }
 
         return view('tanggapan.create', compact('pengaduan'));
@@ -96,6 +96,11 @@ class TanggapanController extends Controller
 
     public function generatePDF()
     {
+
+        if (Auth::guard('petugas')->user()->level == 'Petugas') {
+            return back()->with('error', 'Anda tidak memiliki akses.');
+        }
+
         $admin = Auth::guard('petugas')->user()->nama;
         $tanggapans = Tanggapan::latest()->with('getDataPetugas', 'getDataPengaduan')->get();
 

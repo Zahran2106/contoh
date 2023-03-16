@@ -1,8 +1,12 @@
 @extends('layouts.master')
 @section('content')
     <div class="card">
-        <div class="card-header">
+        <div class="d-flex card-header">
             <h4 class="card-title">Data Tanggapan</h4>
+            <a href="{{ route('generate.pdf') }}" class="btn btn-danger ms-auto">
+                <img src="{{ asset('assets/bootstrap-icons/printer.svg') }}" width="20px" alt="">
+                Generate Laporan
+            </a>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -18,7 +22,7 @@
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
                 @endif
-                <table class="table table-striped table-dark mb-0">
+                <table class="table table-striped table-dark mb-2">
                     <thead>
                         <tr>
                             <th>No</th>
@@ -55,7 +59,7 @@
                                             <img src="{{ asset('assets/bootstrap-icons/pencil-square.svg') }}" width="20px" alt="">
                                         </button>
                                     </a>
-                                    <a class="text-decoration-none" href="/petugas/masyarakat/delete/{{ $tanggapan->id }}" onclick="return confirm('Are you sure to delete?')">
+                                    <a class="text-decoration-none" href="/petugas/tanggapan/delete/{{ $tanggapan->id }}" onclick="return confirm('Are you sure to delete?')">
                                         <button type="button" class="btn btn-danger btn-sm">
                                             <img src="{{ asset('assets/bootstrap-icons/trash.svg') }}" width="20px" alt="">
                                         </button>
@@ -92,6 +96,7 @@
                         @endforeach
                     </tbody>
                 </table>
+                {{ $tanggapans->links() }}
             </div>
         </div>
     </div>
