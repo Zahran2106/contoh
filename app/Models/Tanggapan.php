@@ -14,7 +14,12 @@ class Tanggapan extends Model
 
     public function getDataPengaduan()
     {
-        return $this->belongsTo(Pengaduan::class, 'id_pengaduan', 'id');
+        return $this->belongsTo(Pengaduan::class, 'id_pengaduan', 'id')->with('getDataMasyarakat');
+    }
+
+    public function getDataMasyarakat()
+    {
+        return $this->belongsTo(Masyarakat::class, 'nik', 'nik');
     }
 
     public function getDataPetugas()

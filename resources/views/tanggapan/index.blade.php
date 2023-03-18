@@ -29,6 +29,7 @@
                             <th>Tanggal Tanggapan</th>
                             <th>Id Pengaduan</th>
                             <th>Nama Petugas</th>
+                            <th>Nama Pelapor</th>
                             <th>Tanggapan</th>
                             <th>Status</th>
                             <th style="width: 150px">Action</th>
@@ -41,6 +42,7 @@
                                 <td>{{ $tanggapan->tgl_tanggapan }}</td>
                                 <td>{{ $tanggapan->id_pengaduan }}</td>
                                 <td>{{ $tanggapan->getDataPetugas->nama }}</td>
+                                <td>{{ $tanggapan->getDataPengaduan->getDataMasyarakat->nama }}</td>
                                 <td>{{ $tanggapan->tanggapan }}</td>
                                 <td>
                                     {!! 

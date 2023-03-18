@@ -15,7 +15,7 @@ class TanggapanController extends Controller
 {
     public function index()
     {
-        $tanggapans = Tanggapan::latest()->with('getDataPetugas', 'getDataPengaduan')->paginate(5);
+        $tanggapans = Tanggapan::latest()->with('getDataPetugas', 'getDataPengaduan', 'getDataMasyarakat')->paginate(5);
         return view('tanggapan.index', compact('tanggapans'));
     }
 
