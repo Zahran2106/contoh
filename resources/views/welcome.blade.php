@@ -27,7 +27,7 @@
         </div>
     </nav>
 
-    <div class="container">
+    {{-- <div class="container">
         <div class="d-flex align-items-center" style="height: 60vh">
             <div class="col-md-6">
                 <h1>Aplikasi Pelaporan Pengaduan Masyarakat <u class="text-danger">Kabupaten Bogor</u></h1>
@@ -151,13 +151,7 @@
                 </div>
             </div>
         </div>
-    </div>
-
-    <nav class="navbar bg-dark text-secondary">
-        <div class="container justify-content-center">
-            <span class="">&copy; Copyright 2023 Kabupaten Bogor Allright Reserved.</span>
-        </div>
-    </nav>
+    </div> --}}
 
     <script src="{{ asset('assets/bootstrap/js/bootstrap.js') }}"></script>
 </body>

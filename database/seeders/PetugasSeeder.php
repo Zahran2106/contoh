@@ -11,16 +11,16 @@ class PetugasSeeder extends Seeder
     {
         $data = [
             [
-                'nama' => 'Mohamad Asep Saepulloh',
-                'username' => 'asep30',
-                'password' => bcrypt('asep30'),
+                'nama' => 'Muhammad Zahran Arrafi',
+                'username' => 'zahran',
+                'password' => bcrypt('zahran'),
                 'telp' => '083811691729',
                 'level' => 'Admin',
             ],
             [
-                'nama' => 'Muhamad Ramdhani Akbar',
-                'username' => 'akbar',
-                'password' => bcrypt('akbar'),
+                'nama' => 'Muhamad Rio',
+                'username' => 'rio',
+                'password' => bcrypt('rio'),
                 'telp' => '083811658012',
                 'level' => 'Petugas',
             ]
