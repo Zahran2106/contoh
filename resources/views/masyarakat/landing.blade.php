@@ -26,7 +26,7 @@
                 <div class="card-body">
                     <div class="d-flex align-items-center" style="height: 55vh">
                         <div class="col">
-                            <h4>Halo, Selamat datang di <br> Aplikasi Pelaporan Pengaduan Masyarakat <u class="text-danger">Kabupaten Bogor.</u></h4>
+                            <h4>Halo, Selamat datang di <br> Aplikasi Pengkat <u class="text-primary">Kabupaten Bogor.</u></h4>
                         </div>
                         <div class="col">
                             <img src="{{ asset('assets/vectors/masyarakat-vector.svg') }}" alt="">

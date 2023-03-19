@@ -31,11 +31,11 @@
                     <img width="25px" src="{{ asset('assets/bootstrap-icons/key.svg') }}" alt="">
                 </div>
             </div>
-            <button class="btn btn-danger btn-block btn-lg shadow-lg mt-3">Login</button>
+            <button class="btn btn-primary btn-block btn-lg shadow-lg mt-3">Login</button>
         </form>
         <div class="text-center mt-2 text-lg fs-5">
-            <p class='text-gray-600'>Belum memiliki akun? <a href="{{ route('register') }}" class="font-bold text-danger">Register</a>.</p>
-            <p class='text-gray-600'><a href="{{ route('petugas.login') }}" class="font-bold text-danger">Login sebagai petugas</a></p>
+            <p class='text-gray-600'>Belum memiliki akun? <a href="{{ route('register') }}" class="font-bold text-primary">Register</a>.</p>
+            <p class='text-gray-600'><a href="{{ route('petugas.login') }}" class="font-bold text-primary">Login sebagai petugas</a></p>
         </div>
     @endif
     @if ( request()->is('petugas/login') )
@@ -55,10 +55,10 @@
                     <img width="25px" src="{{ asset('assets/bootstrap-icons/key.svg') }}" alt="">
                 </div>
             </div>
-            <button class="btn btn-danger btn-block btn-lg shadow-lg mt-3">Login</button>
+            <button class="btn btn-primary btn-block btn-lg shadow-lg mt-3">Login</button>
         </form>
         <div class="text-center mt-2 text-lg fs-5">
-            <p class='text-gray-600'><a href="{{ route('login') }}" class="font-bold text-danger">Login sebagai masyarakat</a></p>
+            <p class='text-gray-600'><a href="{{ route('login') }}" class="font-bold text-primary">Login sebagai masyarakat</a></p>
         </div>
     @endif
 

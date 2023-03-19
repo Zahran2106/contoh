@@ -5,14 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="{{ asset('assets/bootstrap/css/bootstrap.css') }}">
-    <title>Aplikasi Pelaporan Pengaduan Masyarakat</title>
+    <title>Aplikasi Pengaduan Masyarakat</title>
 </head>
 <body>
-    <nav class="navbar bg-danger navbar-expand-lg" data-bs-theme="dark">
+    <nav class="navbar bg-primary navbar-expand-lg" data-bs-theme="dark">
         <div class="container-fluid">
             <a class="navbar-brand" href="">
                 <img src="{{ asset('assets/icons/icon-kabupaten.png') }}" alt="" width="30px">
-                <span>APPM Kabupatan Bogor</span>
+                <span>Pengkat Desa Pandansari</span>
             </a>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">

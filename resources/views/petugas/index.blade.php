@@ -22,7 +22,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
             @endif
-            <table class="table table-striped table-dark mb-2">
+            <table class="table table-striped table-bordered mb-2 text-center">
                 <thead>
                     <tr>
                         <th>No</th>

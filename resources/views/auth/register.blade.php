@@ -35,10 +35,10 @@
                 <img width="25px" src="{{ asset('assets/bootstrap-icons/telephone.svg') }}" alt="">
             </div>
         </div>
-        <button class="btn btn-danger btn-block btn-lg shadow-lg mt-3">Register</button>
+        <button class="btn btn-primary btn-block btn-lg shadow-lg mt-3">Register</button>
     </form>
     <div class="text-center mt-2 text-lg fs-5">
-        <p class='text-gray-600'>Sudah memiliki akun? <a href="{{ route('login') }}" class="font-bold text-danger">Login</a>.</p>
+        <p class='text-gray-600'>Sudah memiliki akun? <a href="{{ route('login') }}" class="font-bold text-primary">Login</a>.</p>
     </div>
     
 @endsection

@@ -3,7 +3,7 @@
     <div class="card">
         <div class="d-flex card-header">
             <h4 class="card-title">Data Tanggapan</h4>
-            <a href="{{ route('generate.pdf') }}" class="btn btn-danger ms-auto">
+            <a href="{{ route('generate.pdf') }}" class="btn btn-primary ms-auto">
                 <img src="{{ asset('assets/bootstrap-icons/printer.svg') }}" width="20px" alt="">
                 Generate Laporan
             </a>
@@ -22,7 +22,7 @@
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
                 @endif
-                <table class="table table-striped table-dark mb-2">
+                <table class="table table-striped table-bordered mb-2 text-center">
                     <thead>
                         <tr>
                             <th>No</th>

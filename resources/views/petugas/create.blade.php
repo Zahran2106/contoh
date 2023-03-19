@@ -29,13 +29,14 @@
                     <div class="form-group">
                         <label for="basicInput">Level</label>
                         <select name="level" name="level" class="form-control" id="basicInput">
+                            <option value="" selected disabled>- Pilih Level -</option>
                             <option value="Petugas">Petugas</option>
                             <option value="Admin">Admin</option>
                         </select>
                     </div>
                     <div class="col-xs-12 col-sm-12 col-md-12 text-center mt-2">
-                        <a href="{{ route('petugas.index') }}" class="btn btn-outline-danger">Kembali</a>
-                        <button type="submit" class="btn btn-danger">Tambah</button>
+                        <a href="{{ route('petugas.index') }}" class="btn btn-outline-primary">Kembali</a>
+                        <button type="submit" class="btn btn-primary">Tambah</button>
                     </div>
                 </form>
             </div>

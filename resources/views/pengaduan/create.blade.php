@@ -25,8 +25,8 @@
                         <input type="hidden" name="nik" value="{{ Auth::guard('masyarakat')->user()->nik }}">
                     </div>
                     <div class="col-xs-12 col-sm-12 col-md-12 text-center mt-2">
-                        <a href="{{ route('pengaduan.index') }}" class="btn btn-outline-danger">Kembali</a>
-                        <button type="submit" class="btn btn-danger">Tambah</button>
+                        <a href="{{ route('pengaduan.index') }}" class="btn btn-outline-primary">Kembali</a>
+                        <button type="submit" class="btn btn-primary">Tambah</button>
                     </div>
                 </form>
             </div>
