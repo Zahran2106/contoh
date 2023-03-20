@@ -1,8 +1,14 @@
 @extends('layouts.master')
 @section('content')
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{{ route('petugas.landing') }}">Dashboard</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Petugas</li>
+    </ol>
+</nav>
 <div class="card">
     <div class="card-header d-flex">
-        <h4 class="card-title">Data Masyarakat</h4>
+        <h4 class="card-title">Data Petugas</h4>
         <a href="{{ route('petugas.create') }}" class="btn btn-success ms-auto">
             <img src="{{ asset('assets/icons/plus-lg.svg') }}" width="20px" alt="">
             Tambah Petugas

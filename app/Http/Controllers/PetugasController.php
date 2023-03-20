@@ -15,11 +15,12 @@ class PetugasController extends Controller
     public function landing()
     {
         $totalAduan = Pengaduan::count();
+        $aduanPending = Pengaduan::where('status', '0')->count();
         $aduanProses = Pengaduan::where('status', 'Proses')->count();
         $aduanSelesai = Pengaduan::where('status', 'Selesai')->count();
         $totalMasyarakat = Masyarakat::count();
 
-        return view('petugas.landing', compact('totalAduan', 'aduanProses', 'aduanSelesai', 'totalMasyarakat'));
+        return view('petugas.landing', compact('totalAduan', 'aduanPending', 'aduanProses', 'aduanSelesai', 'totalMasyarakat'));
     }
 
     public function index()

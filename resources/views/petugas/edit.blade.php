@@ -1,5 +1,12 @@
 @extends('layouts.master')
 @section('content')
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{{ route('petugas.landing') }}">Dashboard</a></li>
+        <li class="breadcrumb-item"><a href="{{ route('petugas.index') }}">Petugas</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Edit Petugas</li>
+    </ol>
+</nav>
 <div class="col-md-6">
     <div class="card">
         <div class="card-header">
