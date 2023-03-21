@@ -29,8 +29,37 @@ class PengaduanController extends Controller
         $pengaduanProses = Pengaduan::where('status', 'Proses')->with('getDataMasyarakat', 'getDataTanggapan')->get();
         $pengaduanSelesai = Pengaduan::where('status', 'Selesai')->with('getDataMasyarakat')->get();
         $totalAduan = Pengaduan::count();
+        $cetak = 'proses'
 
         return view('welcome', compact('pengaduanPending', 'pengaduanProses', 'pengaduanSelesai', 'totalAduan'));
+    }
+
+    /cetak/{{ $cetak }}
+
+    public function generatePDF($cetak)
+    {
+
+        if (Auth::guard('petugas')->user()->level == 'Petugas') {
+            return back()->with('error', 'Anda tidak memiliki akses.');
+        }
+
+        if($cetak == proses){
+            pengaduan::where('status',proses)
+            pdf::loadview()
+            pdf->straem()
+        }
+
+        $admin = Auth::guard('petugas')->user()->nama;
+        $tanggapans = Tanggapan::latest()->with('getDataPetugas', 'getDataPengaduan')->get();
+
+        $data = [
+            'judul' => 'Generate Tanggapan dan Pengaduan',
+            'admin' => $admin,
+            'tanggapans' => $tanggapans,
+        ];
+
+        $pdf = Pdf::loadView('tanggapan.generate_pdf', $data)->setPaper('a4', 'landscape');
+        return $pdf->stream();
     }
 
     public function create()
