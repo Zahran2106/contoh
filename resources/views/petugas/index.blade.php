@@ -1,11 +1,6 @@
 @extends('layouts.master')
 @section('content')
-<nav aria-label="breadcrumb">
-    <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="{{ route('petugas.landing') }}">Dashboard</a></li>
-        <li class="breadcrumb-item active" aria-current="page">Petugas</li>
-    </ol>
-</nav>
+
 <div class="card">
     <div class="card-header d-flex">
         <h4 class="card-title">Data Petugas</h4>
@@ -14,6 +9,7 @@
             Tambah Petugas
         </a>
     </div>
+    
     <div class="card-body">
         <div class="table-responsive">
             @if (session('error'))

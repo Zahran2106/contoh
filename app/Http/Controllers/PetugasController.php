@@ -14,13 +14,54 @@ class PetugasController extends Controller
 {
     public function landing()
     {
+        $pengaduan = Pengaduan::orderBy('id','asc')('0')->paginate(5);
+
         $totalAduan = Pengaduan::count();
         $aduanPending = Pengaduan::where('status', '0')->count();
         $aduanProses = Pengaduan::where('status', 'Proses')->count();
         $aduanSelesai = Pengaduan::where('status', 'Selesai')->count();
         $totalMasyarakat = Masyarakat::count();
 
-        return view('petugas.landing', compact('totalAduan', 'aduanPending', 'aduanProses', 'aduanSelesai', 'totalMasyarakat'));
+        return view('pengaduan.indexPetugas', compact('totalAduan', 'aduanPending', 'aduanProses', 'aduanSelesai', 'totalMasyarakat'));
+    }
+
+    public function filter()
+    {
+        $pengaduan = Pengaduan::where('status', '0')->paginate(5);
+
+        $totalAduan = Pengaduan::count();
+        $aduanPending = Pengaduan::where('status', '0')->count();
+        $aduanProses = Pengaduan::where('status', 'Proses')->count();
+        $aduanSelesai = Pengaduan::where('status', 'Selesai')->count();
+        $totalMasyarakat = Masyarakat::count();
+
+        return view('pengaduan.indexPetugas', compact('totalAduan', 'aduanPending', 'aduanProses', 'aduanSelesai', 'totalMasyarakat'));
+    }
+
+    public function filter2()
+    {
+        $pengaduan = Pengaduan::where('status', 'Proses')->paginate(5);
+
+        $totalAduan = Pengaduan::count();
+        $aduanPending = Pengaduan::where('status', '0')->count();
+        $aduanProses = Pengaduan::where('status', 'Proses')->count();
+        $aduanSelesai = Pengaduan::where('status', 'Selesai')->count();
+        $totalMasyarakat = Masyarakat::count();
+
+        return view('pengaduan.indexPetugas', compact('totalAduan', 'aduanPending', 'aduanProses', 'aduanSelesai', 'totalMasyarakat'));
+    }
+
+    public function filter1()
+    {
+        $pengaduan = Pengaduan::where('status' ,'Selesai')->paginate(5);
+
+        $totalAduan = Pengaduan::count();
+        $aduanPending = Pengaduan::where('status', '0')->count();
+        $aduanProses = Pengaduan::where('status', 'Proses')->count();
+        $aduanSelesai = Pengaduan::where('status', 'Selesai')->count();
+        $totalMasyarakat = Masyarakat::count();
+
+        return view('pengaduan.indexPetugas', compact('totalAduan', 'aduanPending', 'aduanProses', 'aduanSelesai', 'totalMasyarakat'));
     }
 
     public function index()

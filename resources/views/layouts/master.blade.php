@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard - Aplikasi Pengkat</title>
     
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
     <link rel="stylesheet" href="{{ asset('assets/template/assets/css/main/app.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/template/assets/css/main/app-dark.css') }}">
     <link rel="shortcut icon" href="{{ asset('assets/icons/icon-kabupaten.png') }}" type="image/x-icon">

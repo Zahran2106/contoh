@@ -28,10 +28,10 @@
                                 <img src="{{ asset('assets/bootstrap-icons/person.svg') }}" alt="">
                             </div>
                         </div>
-                        <div class="col-md-8 col-lg-12 col-xl-12 col-xxl-7">
-                            <h6 class="text-muted font-semibold">Total Masyarakat</h6>
+                        <a href="/">
+                            <p class="text-sm mb-1 text-muted font-bold">Total Masyarakat</p>
                             <h6 class="font-extrabold mb-0">{{ $totalMasyarakat }}</h6>
-                        </div>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -46,7 +46,7 @@
                                 </div>
                             </div>
                             <div class="col-md-8 col-lg-12 col-xl-12 col-xxl-7">
-                                <h6 class="text-muted font-semibold">Total Aduan</h6>
+                                <p class="text-sm mb-1 text-muted font-bold">Total Aduan</p>
                                 <h6 class="font-extrabold mb-0">{{ $totalAduan }}</h6>
                             </div>
                         </div>
@@ -63,7 +63,7 @@
                                 </div>
                             </div>
                             <div class="col-md-8 col-lg-12 col-xl-12 col-xxl-7">
-                                <h6 class="text-muted font-semibold">Aduan Proses</h6>
+                                <p class="text-sm mb-1 text-muted font-bold">Total Proces</p>
                                 <h6 class="font-extrabold mb-0">{{ $aduanProses }}</h6>
                             </div>
                         </div>
@@ -80,7 +80,7 @@
                                 </div>
                             </div>
                             <div class="col-md-8 col-lg-12 col-xl-12 col-xxl-7">
-                                <h6 class="text-muted font-semibold">Aduan Selesai</h6>
+                                <p class="text-sm mb-1 text-muted font-bold">Total Selesai</p>
                                 <h6 class="font-extrabold mb-0">{{ $aduanSelesai }}</h6>
                             </div>
                         </div>
@@ -97,7 +97,7 @@
                             </div>
                         </div>
                         <div class="col-md-8 col-lg-12 col-xl-12 col-xxl-7">
-                            <h6 class="text-muted font-semibold">Aduan Pending</h6>
+                            <p class="text-sm mb-1 text-muted font-bold">Total Pending</p>
                             <h6 class="font-extrabold mb-0">{{ $aduanPending }}</h6>
                         </div>
                     </div>
