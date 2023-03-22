@@ -30,13 +30,12 @@
 		</thead>
 		<tbody>
       @php $i=1 @endphp
-	  {{ dd ($pengaduans)}}
       @foreach ($pengaduans as $pengaduan)
         <tr>
           <td>{{ $i++ }}</td>
           <td>{{ $pengaduan->tgl_pengaduan }}</td>
           <td>{{ $pengaduan->nik }}</td>
-          {{-- <td>{{ $pengaduan->getDataMasyarakat->nama }}</td> --}}
+          <td>{{ $pengaduan->getDataMasyarakat->nama }}</td>
           <td>{{ $pengaduan->isi_laporan }}</td>
           <td>{{ $pengaduan->status}}</td>
         </tr>
