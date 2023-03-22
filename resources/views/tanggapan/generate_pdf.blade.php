@@ -30,15 +30,19 @@
 		</thead>
 		<tbody>
       @php $i=1 @endphp
-	  {{ dd ($pengaduans)}}
       @foreach ($pengaduans as $pengaduan)
         <tr>
           <td>{{ $i++ }}</td>
           <td>{{ $pengaduan->tgl_pengaduan }}</td>
           <td>{{ $pengaduan->nik }}</td>
-          {{-- <td>{{ $pengaduan->getDataMasyarakat->nama }}</td> --}}
+          <td>{{ $pengaduan->getDataMasyarakat->nama }}</td>
           <td>{{ $pengaduan->isi_laporan }}</td>
-          <td>{{ $pengaduan->status}}</td>
+          <td>
+			{!! 
+				$pengaduan->status == "0" ? '<span class="badge text-bg-secondary">Pending</span>' :
+				($pengaduan->status == "Proses" ? '<span class="badge text-bg-warning">Proses</span>' : '<span class="badge text-bg-success">Selesai</span>')
+			!!}
+		</td>
         </tr>
       @endforeach
 		</tbody>
@@ -46,6 +50,3 @@
  
 </body>
 </html>
-
-
-

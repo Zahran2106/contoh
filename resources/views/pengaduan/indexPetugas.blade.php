@@ -1,6 +1,27 @@
 @extends('layouts.master')
 @section('content')
 <div class="row">
+    <div class="col-6 col-lg-3 col-md-6">
+        <div class="card">
+            <div class="card-body px-4 py-4-5">
+                <div class="row">
+                    <div class="col-md-4 col-lg-12 col-xl-12 col-xxl-5 d-flex justify-content-start ">
+                        <div class="stats-icon blue mb-2">
+                            <img src="{{ asset('assets/bootstrap-icons/arrow-clockwise.svg') }}" alt="">
+                        </div>
+                    </div>
+                    <a href="/petugas/pengaduan">
+                        <h6 class="text-muted font-semibold">Total Aduan</h6>
+                        <h6 class="font-extrabold mb-0">{{ $totalAduan }}</h6>
+                    </a>
+                    <!-- <div class="col-md-8 col-lg-12 col-xl-12 col-xxl-7">
+                        <h6 class="text-muted font-semibold">Aduan Proses</h6>
+                        <h6 class="font-extrabold mb-0">{{ $aduanProses }}</h6>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+</div>
         <div class="col-6 col-lg-3 col-md-6">
                 <div class="card">
                     <div class="card-body px-4 py-4-5">

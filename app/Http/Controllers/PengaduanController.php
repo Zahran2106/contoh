@@ -27,13 +27,14 @@ class PengaduanController extends Controller
         $aduanSelesai = Pengaduan::where('status', 'Selesai')->count();
 
         $pengaduans = Pengaduan::latest()->with('getDataMasyarakat', 'getDataTanggapan')->paginate(5);
-        $cetak = 'cetak';
+        $cetak = 'semua';
 
         return view('pengaduan.indexPetugas', compact('pengaduans', 'totalAduan', 'aduanPending', 'aduanProses', 'aduanSelesai', 'cetak'));
     }
 
     public function pending()
     {
+        $totalAduan = Pengaduan::count();
         $aduanPending = Pengaduan::where('status', '0')->count();
         $aduanProses = Pengaduan::where('status', 'Proses')->count();
         $aduanSelesai = Pengaduan::where('status', 'Selesai')->count();
@@ -41,11 +42,12 @@ class PengaduanController extends Controller
         $pengaduans = Pengaduan::where('status', '0')->with('getDataMasyarakat')->paginate(5);
         $cetak = 'pending';
 
-        return view('pengaduan.indexPetugas', compact('pengaduans', 'aduanPending', 'aduanProses', 'aduanSelesai', 'cetak'));
+        return view('pengaduan.indexPetugas', compact('pengaduans', 'totalAduan', 'aduanPending', 'aduanProses', 'aduanSelesai', 'cetak'));
     }
 
     public function proses()
     {
+        $totalAduan = Pengaduan::count();
         $aduanPending = Pengaduan::where('status', '0')->count();
         $aduanProses = Pengaduan::where('status', 'Proses')->count();
         $aduanSelesai = Pengaduan::where('status', 'Selesai')->count();
@@ -53,11 +55,12 @@ class PengaduanController extends Controller
         $pengaduans = Pengaduan::where('status', 'Proses')->with('getDataMasyarakat')->paginate(5);
         $cetak = 'proses';
 
-        return view('pengaduan.indexPetugas', compact('pengaduans', 'aduanPending', 'aduanProses', 'aduanSelesai', 'cetak'));
+        return view('pengaduan.indexPetugas', compact('pengaduans', 'totalAduan', 'aduanPending', 'aduanProses', 'aduanSelesai', 'cetak'));
     }
 
     public function selesai()
     {
+        $totalAduan = Pengaduan::count();
         $aduanPending = Pengaduan::where('status', '0')->count();
         $aduanProses = Pengaduan::where('status', 'Proses')->count();
         $aduanSelesai = Pengaduan::where('status', 'Selesai')->count();
@@ -65,7 +68,7 @@ class PengaduanController extends Controller
         $pengaduans = Pengaduan::where('status' ,'Selesai')->with('getDataMasyarakat')->paginate(5);
         $cetak = 'selesai';
 
-        return view('pengaduan.indexPetugas', compact('pengaduans', 'aduanPending', 'aduanProses', 'aduanSelesai', 'cetak'));
+        return view('pengaduan.indexPetugas', compact('pengaduans', 'totalAduan', 'aduanPending', 'aduanProses', 'aduanSelesai', 'cetak'));
     }
 
     public function pengaduanLanding()
@@ -186,15 +189,15 @@ class PengaduanController extends Controller
     }
 
     public function pengaduanPDF($cetak)
-    {
+    {   
         if($cetak == 'semua') {
-            $pengaduans = pengaduan::all()->get();
+            $pengaduans = pengaduan::latest()->with('getDataMasyarakat')->get();
         }elseif($cetak == 'pending'){
-            $pengaduans = pengaduan::where('status', 'pending')->get();
+            $pengaduans = pengaduan::where('status', '0')->with('getDataMasyarakat')->get();
         } elseif ($cetak == 'proses') {
-            $pengaduans = pengaduan::where('status', 'proses')->get();
-        } elseif ($cetak == 'selesai') {
-            $pengaduans = pengaduan::where('status', 'selesai')->get();
+            $pengaduans = pengaduan::where('status', 'proses')->with('getDataMasyarakat')->get();
+        } else {
+            $pengaduans = pengaduan::where('status', 'selesai')->with('getDataMasyarakat')->get();
         }
 
         $admin = Auth::guard('petugas')->user()->nama;
@@ -204,37 +207,10 @@ class PengaduanController extends Controller
             'admin' => $admin,
             'pengaduans' => $pengaduans,
         ];
-        return $pengaduans;
+        // return $pengaduans;
 
         $pdf = Pdf::loadView('tanggapan.generate_pdf', $data)->setPaper('a4', 'landscape');
         return $pdf->stream();
     }
-    // public function pengaduanPDF($cetak)
-    // {
-    //     if (Auth::guard('petugas')->user()->level == 'Petugas') {
-    //         return back()->with('error', 'Anda tidak memiliki akses.');
-    //     }
-
-    //     if($cetak == pending){
-    //         pengaduan::where('status',pending);
-    //     }
-    //     if($cetak == proses){
-    //         pengaduan::where('status',proses);
-    //     }
-    //     if($cetak == selesai){
-    //         pengaduan::where('status',selesai);
-    //     }
-
-    //     $admin = Auth::guard('petugas')->user()->nama;
-    //     $tanggapans = Tanggapan::latest()->with('getDataPetugas', 'getDataPengaduan')->get();
-
-    //     $data = [
-    //         'judul' => 'Generate Tanggapan dan Pengaduan',
-    //         'admin' => $admin,
-    //         'tanggapans' => $tanggapans,
-    //     ];
-
-    //     $pdf = Pdf::loadView('tanggapan.generate_pdf', $data)->setPaper('a4', 'landscape');
-    //     return $pdf->stream();
-    // }
 }
+    
