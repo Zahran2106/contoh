@@ -3,10 +3,10 @@
     <div class="card">
         <div class="d-flex card-header">
             <h4 class="card-title">Data Tanggapan</h4>
-            {{-- <a href="{{ route('generate.pdf') }}" class="btn btn-primary ms-auto">
+            <a href="{{ route('generate.pdf') }}" class="btn btn-primary ms-auto">
                 <img src="{{ asset('assets/bootstrap-icons/printer.svg') }}" width="20px" alt="">
                 Generate Laporan
-            </a> --}}
+            </a>
         </div>
         <div class="card-body">
             <div class="table-responsive">
