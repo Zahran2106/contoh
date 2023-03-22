@@ -30,14 +30,15 @@
 		</thead>
 		<tbody>
       @php $i=1 @endphp
-      @foreach ($tanggapans as $tanggapan)
+	  {{ dd ($pengaduans)}}
+      @foreach ($pengaduans as $pengaduan)
         <tr>
           <td>{{ $i++ }}</td>
-          <td>{{ $tanggapan->getDataPengaduan->tgl_pengaduan }}</td>
-          <td>{{ $tanggapan->getDataPengaduan->nik }}</td>
-          <td>{{ $tanggapan->getDataPengaduan->getDataMasyarakat->nama }}</td>
-          <td>{{ $tanggapan->getDataPengaduan->isi_laporan }}</td>
-          <td>{{ $tanggapan->getDataPengaduan->status}}</td>
+          <td>{{ $pengaduan->tgl_pengaduan }}</td>
+          <td>{{ $pengaduan->nik }}</td>
+          {{-- <td>{{ $pengaduan->getDataMasyarakat->nama }}</td> --}}
+          <td>{{ $pengaduan->isi_laporan }}</td>
+          <td>{{ $pengaduan->status}}</td>
         </tr>
       @endforeach
 		</tbody>

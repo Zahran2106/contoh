@@ -1,8 +1,77 @@
 @extends('layouts.master')
 @section('content')
+<div class="row">
+        <div class="col-6 col-lg-3 col-md-6">
+                <div class="card">
+                    <div class="card-body px-4 py-4-5">
+                        <div class="row">
+                            <div class="col-md-4 col-lg-12 col-xl-12 col-xxl-5 d-flex justify-content-start ">
+                                <div class="stats-icon blue mb-2">
+                                    <img src="{{ asset('assets/bootstrap-icons/arrow-clockwise.svg') }}" alt="">
+                                </div>
+                            </div>
+                            <a href="/petugas/pengaduan/proses">
+                                <h6 class="text-muted font-semibold">Aduan Proses</h6>
+                                <h6 class="font-extrabold mb-0">{{ $aduanProses }}</h6>
+                            </a>
+                            <!-- <div class="col-md-8 col-lg-12 col-xl-12 col-xxl-7">
+                                <h6 class="text-muted font-semibold">Aduan Proses</h6>
+                                <h6 class="font-extrabold mb-0">{{ $aduanProses }}</h6>
+                            </div> -->
+                        </div>
+                    </div>
+                </div>
+        </div>
+        <div class="col-6 col-lg-3 col-md-6">
+                <div class="card">
+                    <div class="card-body px-4 py-4-5">
+                        <div class="row">
+                            <div class="col-md-4 col-lg-12 col-xl-12 col-xxl-5 d-flex justify-content-start ">
+                                <div class="stats-icon blue mb-2">
+                                    <img src="{{ asset('assets/bootstrap-icons/check-square.svg') }}" alt="">
+                                </div>
+                            </div>
+                            <a href="/petugas/pengaduan/selesai">
+                            <h6 class="text-muted font-semibold">Aduan Selesai</h6>
+                                <h6 class="font-extrabold mb-0">{{ $aduanSelesai }}</h6>
+                            </a>
+                            <!-- <div class="col-md-8 col-lg-12 col-xl-12 col-xxl-7">
+                                <h6 class="text-muted font-semibold">Aduan Selesai</h6>
+                                <h6 class="font-extrabold mb-0">{{ $aduanSelesai }}</h6>
+                            </div> -->
+                        </div>
+                    </div>
+                </div>
+        </div>
+        <div class="col-6 col-lg-3 col-md-6">
+                <div class="card">
+                    <div class="card-body px-4 py-4-5">
+                        <div class="row">
+                            <div class="col-md-4 col-lg-12 col-xl-12 col-xxl-5 d-flex justify-content-start ">
+                                <div class="stats-icon blue mb-2">
+                                    <img src="{{ asset('assets/bootstrap-icons/check-square.svg') }}" alt="">
+                                </div>
+                            </div>
+                            <a href="/petugas/pengaduan/pending">
+                                <h6 class="text-muted font-semibold">Aduan Pending</h6>
+                                <h6 class="font-extrabold mb-0">{{ $aduanPending }}</h6>
+                            </a>
+                            <!-- <div class="col-md-8 col-lg-12 col-xl-12 col-xxl-7">
+                                <h6 class="text-muted font-semibold">Aduan Pending</h6>
+                                <h6 class="font-extrabold mb-0">{{ $aduanPending }}</h6>
+                            </div> -->
+                        </div>
+                    </div>
+                </div>
+        </div>
+    </div>
     <div class="card">
-        <div class="card-header">
+        <div class="d-flex card-header">
             <h4 class="card-title">Data Pengaduan</h4>
+            <a href="/cetak/{{ $cetak }}" class="btn btn-primary ms-auto">
+                <img src="{{ asset('assets/bootstrap-icons/printer.svg') }}" width="20px" alt="">
+                Generate Laporan
+            </a>    
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -18,7 +87,7 @@
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
                 @endif
-                <table class="table table-striped table-bordered mb-2 text-center">
+                <table class="table table-bordered table-dark mb-2 text-center">
                     <thead>
                         <tr>
                             <th>No</th>
@@ -50,7 +119,7 @@
                                 </td>
                                 <td>
                                     {!! 
-                                        $pengaduan->status == "0" ? '<span class="badge text-bg-secondary">Pending</span>' :
+                                        $pengaduan->status == "0" ? '<span class="badge text-bg-secondary">Pending</span>' :    
                                         ($pengaduan->status == "Proses" ? '<span class="badge text-bg-warning">Proses</span>' : '<span class="badge text-bg-success">Selesai</span>')
                                     !!}
                                 </td>
